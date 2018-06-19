@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Desenhar Rota 1.1</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+<body>
+    <div id="container">
+        <div id="painelRotas">
+            <div class="title">
+                Rotas
+            </div>
+			
+            <div class="select-style" >
+                <select onchange="criaRota(this.value)" id="listaRotas">
+                    <option value="0"> Selecione uma rota </option>
+				</select>
+            </div>
+        </div>
+
+        <div id="listaMapas">
+            <div id="map"></div>
+        </div>
+    </div>
+
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+				<p style="text-align:center"> <b>Nome da rota</b> </p>
+			<label> Nome: </label> <input type="text" id="nomeRota"> </input> <br>
+			<button style="float:right; margin-top:10px;" id="cadastrarDesenhoRota"> Cadastrar </button> <br>
+		</div>
+	</div>
+	
+	<button onclick="initMap2()"> Voltar </button>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0G05ginLCDM3lnM6S6xlZbILVJ5yOTAs"></script>
+	<script type="text/javascript" src="map.js"></script>
+	<script type="text/javascript" src="rotas.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
