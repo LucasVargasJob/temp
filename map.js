@@ -61,6 +61,14 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
+
+    //Gatilho para funcao de digitar o endereço e ir até o local
+    var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('PesquisarEndereco').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+    });
+
 	// Cria o objeto polígono
     poly = new google.maps.Polyline({
         strokeColor: '#000000',
