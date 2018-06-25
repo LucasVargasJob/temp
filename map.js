@@ -48,7 +48,38 @@ function initMap() {
 					strokeColor: 'DarkCyan'
 				}
 			});
-			
+
+            //FUNCAO PARA CRIAR ICON DE CORRIDA
+            rotas.forEach(function(rotas) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(rotas['pontos'][0][0], rotas['pontos'][0][1]),
+                    icon: 'img/run.png',
+                    map: map,
+                    title: rotas['nome']
+                    });
+
+                var infoRota = '<div id="content">'+
+                                    '<div id="siteNotice">'+
+                                    '</div>'+
+                                    '<h1 id="firstHeading" class="firstHeading"> '+ rotas['nome'] +' </h1>'+
+                                    '<div id="bodyContent">'+
+                                        '<b>Data:</b> '+ rotas['info']['data'] +' <br>' +
+                                        '<b>Largada:</b> '+ rotas['info']['largada'] +'<br>' +
+                                        '<b>Local:</b> '+ rotas['info']['local'] +' <br>' +
+                                        '<b>Distancia:</b> '+ rotas['info']['distancia'] +'<br>' +
+                                        '<input id="iniciarRota" type="button" value="Iniciar Rota" onclick="criaRota('+ rotas['cod_rota'] +')">'
+                                    '</div>'+
+                                '</div>';
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: infoRota
+                });
+
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+
             infoWindow.setPosition(pos);
             infoWindow.setContent('Você está aqui');
             infoWindow['map']['zoom'] = 18;
@@ -60,8 +91,6 @@ function initMap() {
         // Navegador não possui suporte para o geolocation.
         handleLocationError(false, infoWindow, map.getCenter());
     }
-
-
     //Gatilho para funcao de digitar o endereço e ir até o local
     var geocoder = new google.maps.Geocoder();
 
@@ -82,12 +111,10 @@ function initMap() {
 
 // Função para desenhar pontos no map e pegar a latitude e longitude.
 function addLatLng(event) {
-	
     var posicao = [
         event.latLng.lat(),
         event.latLng.lng()
     ];
-
     points.push(posicao);
 	
     var path = poly.getPath();

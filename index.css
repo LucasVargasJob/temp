@@ -98,3 +98,9 @@ html, body {
     text-decoration: none;
     cursor: pointer;
 }
+
+.input-style {
+    margin-left: 10%;
+   
+    width: 80%;
+}

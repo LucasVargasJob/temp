@@ -23,7 +23,7 @@ botaoCadastrar.onclick = function() {
             "nome": nome,
             "pontos": points  
         };
-
+        console.log(points);
         select = document.getElementById('listaRotas');
         var opt = document.createElement('option');
         opt.value = novaRota['cod_rota'];
@@ -58,6 +58,15 @@ function geocodeAddress(geocoder, resultsMap) {
     }
     });
 }
+
+
+rotas.forEach(function(rotas) {
+    var marker = new google.maps.Marker({
+       position: new google.maps.LatLng(rotas['pontos'][0][0], rotas['pontos'][0][1]),
+       icon: 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png',
+       map: map
+    });
+});
 
 initMap();
 carregaRotasSelect();
